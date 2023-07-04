@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Head from "next/head";
 import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
-import CreatePost from "../components/CreatePost";
+
 import Link from "next/link";
 import Router from "next/router";
 import { db, auth, storage, provider } from "../config/fire-config";
