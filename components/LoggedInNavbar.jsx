@@ -126,7 +126,7 @@ function LoggedInNavbar() {
                 <MenuItem onClick={() => Router.push("/users/login")}>
                   <Typography textAlign="center">Blog</Typography>
                 </MenuItem>
-                <MenuItem onClick={() => Router.push("/users/login")}>
+                <MenuItem onClick={() => Router.push("/blog/CreatePostForm")}>
                   <Typography textAlign="center">Create Post</Typography>
                 </MenuItem>
               </Menu>
