@@ -117,7 +117,7 @@ function LoggedInNavbar() {
                   display: { xs: "block", md: "none" },
                 }}
               >
-                <MenuItem onClick={() => Router.push("/users/login")}>
+                <MenuItem onClick={() => Router.push("/food/FoodList")}>
                   <Typography textAlign="center">Food</Typography>
                 </MenuItem>
                 <MenuItem onClick={() => Router.push("/users/login")}>
@@ -125,6 +125,9 @@ function LoggedInNavbar() {
                 </MenuItem>
                 <MenuItem onClick={() => Router.push("/users/login")}>
                   <Typography textAlign="center">Blog</Typography>
+                </MenuItem>
+                <MenuItem onClick={() => Router.push("/users/login")}>
+                  <Typography textAlign="center">Create Post</Typography>
                 </MenuItem>
               </Menu>
             </Box>
@@ -148,7 +151,7 @@ function LoggedInNavbar() {
             </Typography>
             <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
               <Button
-                onClick={() => Router.push("/users/register")}
+                onClick={() => Router.push("/food/FoodList")}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 Food
@@ -164,6 +167,12 @@ function LoggedInNavbar() {
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 About
+              </Button>
+              <Button
+                onClick={() => Router.push("/blog/CreatePostForm")}
+                sx={{ my: 2, color: "white", display: "block" }}
+              >
+                Create Post
               </Button>
             </Box>
 

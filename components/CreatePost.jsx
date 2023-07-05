@@ -1,47 +1,69 @@
 import React, { useState } from "react";
-import fire from "../config/fire-config";
+import { db } from "../config/fire-config";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import {
+  Grid,
+  Button,
+  Box,
+  TextField,
+  Typography,
+  FormControl,
+  Paper,
+} from "@mui/material";
+import Router from "next/router";
+
 const CreatePost = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [notification, setNotification] = useState("");
-  const handleSubmit = (event) => {
+  const postsCollectionRef = collection(db, "blog");
+
+  const handleSubmit = async (event) => {
+    alert("Adsfadf");
     event.preventDefault();
-    fire.firestore().collection("blog").add({
-      title: title,
-      content: content,
+    await addDoc(postsCollectionRef, {
+      title,
+      content,
     });
     setTitle("");
     setContent("");
-    setNotification("Blogpost created");
-    setTimeout(() => {
-      setNotification("");
-    }, 2000);
+    Router.push("/");
   };
   return (
-    <div>
-      <h2>Add Blog</h2>
+    <Paper sx={{ padding: "1.2rem" }}>
+      <Typography variant="h2">Add Blog</Typography>
       {notification}
-      <form onSubmit={handleSubmit}>
-        <div>
-          Title
-          <br />
-          <input
-            type="text"
-            value={title}
-            onChange={({ target }) => setTitle(target.value)}
-          />
-        </div>
-        <div>
-          Content
-          <br />
-          <textarea
-            value={content}
-            onChange={({ target }) => setContent(target.value)}
-          />
-        </div>
-        <button type="submit">Save</button>
-      </form>
-    </div>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        noValidate
+        fullWidth
+        sx={{ display: "flex", flexDirection: "Column", gap: "1rem" }}
+      >
+        <TextField
+          label="Title"
+          fullWidth
+          type="text"
+          value={title}
+          onChange={({ target }) => setTitle(target.value)}
+        />
+
+        <TextField
+          label="Content"
+          fullWidth
+          multiline
+          rows={12}
+          value={content}
+          variant="filled"
+          onChange={({ target }) => setContent(target.value)}
+        />
+        <Grid item md={2} xs={6}>
+          <Button variant="contained" type="submit" fullWidth>
+            Save
+          </Button>
+        </Grid>
+      </Box>
+    </Paper>
   );
 };
 export default CreatePost;

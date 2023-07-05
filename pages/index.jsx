@@ -72,8 +72,6 @@ const HomePage = () => {
             </Box>
           );
         })}
-
-        {/* <CreatePost /> */}
       </Box>
     </Grid>
   );

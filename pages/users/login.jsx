@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { db, auth, storage, provider } from "../../config/fire-config";
 import Router from "next/router";
 import { useUserActions } from "../../_action";
@@ -15,6 +15,8 @@ import {
   Button,
   CssBaseline,
 } from "@mui/material";
+import { authAtom } from "../../_state";
+import { useRecoilValue } from "recoil";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
@@ -23,6 +25,10 @@ const Login = () => {
 
   const user = auth.currentUser;
   const defaultTheme = createTheme();
+  const userDetails = useRecoilValue(authAtom);
+  useEffect(() => {
+    if (userDetails !== null) Router.push("/");
+  });
 
   console.log(user, "user Details");
   const handleSubmit = async (e) => {

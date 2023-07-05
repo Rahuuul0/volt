@@ -15,13 +15,16 @@ function Layout({ children }) {
   return (
     <>
       {auth !== null ? <LoggedInNavbar /> : <Navbar />}
-      <Container
-        sx={{ marginTop: "2rem", display: "flex", justifyContent: "center" }}
+      <Grid
+        container
+        md={12}
+        xs={12}
+        sx={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}
       >
-        <Grid container md={10}>
+        <Grid item md={10} xs={12}>
           {children}
         </Grid>
-      </Container>
+      </Grid>
     </>
   );
 }

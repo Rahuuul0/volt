@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Router from "next/router";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { db, auth, storage, provider } from "../../config/fire-config";
@@ -16,10 +16,16 @@ import {
 } from "@mui/material";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { authAtom } from "../../_state";
+import { useRecoilValue } from "recoil";
 
 const Register = () => {
   const defaultTheme = createTheme();
   const [err, setErr] = useState(false);
+  const userDetails = useRecoilValue(authAtom);
+  useEffect(() => {
+    if (userDetails !== null) Router.push("/");
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,7 +72,7 @@ const Register = () => {
         >
           <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}></Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Register
           </Typography>
           <Box
             component="form"
